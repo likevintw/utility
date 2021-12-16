@@ -144,68 +144,65 @@ class TestProcess(unittest.TestCase):
             result = utility.remove_last_slash(string[i])
             self.assertEqual(want[i], result)
 
-    def test_get_file_name_list(self):
-        folder_path = []
-        level_limitation = []
-        want = []
-
-        # 1.
-        folder_path.append("test")
-        level_limitation.append(5)
-        want.append(['test/1/11.txt', 'test/2/22.txt'])
-        # 2.
-        folder_path.append("test/")
-        level_limitation.append(5)
-        want.append(['test/1/11.txt', 'test/2/22.txt'])
-
-        for i in range(len(folder_path)):
-            result = utility.get_file_name_list(
-                folder_path[i], level_limitation[i])
-            self.assertEqual(want[i], result)
-
-    # @unittest.skip("")
-    def test_get_file_path_list(self):
-        folder_path = []
-        level_limitation = []
-        want = []
-
-        # 1.
-        folder_path.append("test")
-        level_limitation.append(5)
-        want.append(['test', 'test/1', 'test/2'])
-        # 2.
-        folder_path.append("test/")
-        level_limitation.append(5)
-        want.append(['test', 'test/1', 'test/2'])
-
-        for i in range(len(folder_path)):
-            result = utility.get_file_path_list(
-                folder_path[i], level_limitation[i])
-            self.assertEqual(want[i], result)
-            
-
     def test_get_file_and_direct_path(self):
         folder_path = []
-        level_limitation = []
         want_file = []
         want_direct = []
 
         # 1.
         folder_path.append("test")
-        level_limitation.append(5)
         want_file.append(['test/1/11.txt', 'test/2/22.txt'])
         want_direct.append(['test', 'test/1', 'test/2'])
         # 2.
         folder_path.append("test/")
-        level_limitation.append(5)
         want_file.append(['test/1/11.txt', 'test/2/22.txt'])
         want_direct.append(['test', 'test/1', 'test/2'])
 
         for i in range(len(folder_path)):
-            file,direct = utility.get_file_and_direct_path(
-                folder_path[i], level_limitation[i])
+            file, direct = utility.get_file_and_direct_path(
+                folder_path[i], 10)
             self.assertEqual(want_file[i], file)
             self.assertEqual(want_direct[i], direct)
+
+    def test_get_file_and_direct_path_walk(self):
+        folder_path = []
+        want_file = []
+        want_direct = []
+
+        # 1.
+        folder_path.append("test")
+        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
+        want_direct.append(['test', 'test/1', 'test/2'])
+        # 2.
+        folder_path.append("test/")
+        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
+        want_direct.append(['test', 'test/1', 'test/2'])
+
+        for i in range(len(folder_path)):
+            file, direct = utility.get_file_and_direct_path_walk(
+                folder_path[i])
+            self.assertEqual(want_file[i], file)
+            self.assertEqual(want_direct[i], direct)
+
+    def test_compare_walk_and_own_routine(self):
+        folder_path = []
+
+        # 1.
+        folder_path.append(
+            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/media")
+        # 2.
+        folder_path.append(
+            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/safecampus")
+        # 3.
+        folder_path.append(
+            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/image_box")
+
+        for i in range(len(folder_path)):
+            file, direct = utility.get_file_and_direct_path(folder_path[i], 10)
+            wfile, wdirect = utility.get_file_and_direct_path_walk(
+                folder_path[i])
+            self.assertEqual(len(file), len(wfile))
+            self.assertEqual(len(direct), len(wdirect))
 
 
 if __name__ == '__main__':
