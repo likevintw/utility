@@ -3,7 +3,7 @@ import json
 import os
 
 
-def replace_string(data_list, target, replaced):
+def replace_string_in_list(data_list, target, replaced):
     result = []
     for i in data_list:
         buffer = i.replace(target, replaced)
@@ -11,7 +11,7 @@ def replace_string(data_list, target, replaced):
     return result
 
 
-def remove_string(data_list, target):
+def remove_string_in_list(data_list, target):
     result = []
     for i in data_list:
         if not target in i:
@@ -19,7 +19,7 @@ def remove_string(data_list, target):
     return result
 
 
-def keep_string(data_list, target):
+def keep_string_in_list(data_list, target):
     result = []
     for i in data_list:
         if target in i:
@@ -27,19 +27,21 @@ def keep_string(data_list, target):
     return result
 
 
-def import_json(file_path):
+def import_json_file(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
 
 
-def export_json(export_file_name, data):
+def export_json_file(export_file_name, data):
     with open(export_file_name, 'w') as file:
         json.dump(data, file)
 
+def import_file(file_path)->list:
+    pass
 
-def save_as_log(export_file_path, data):
-    with open(export_file_path, mode='w') as file:
+def export_file(file_path, data):
+    with open(file_path, mode='w') as file:
         for i in data:
             file.write(i+"\n")
 
@@ -114,3 +116,6 @@ def get_file_and_direct_path_walk(folder_path) -> list:
                 file_list.append("{}/{}".format(location, j))
         direct_list.append(location)
     return file_list, direct_list
+
+def export_python_function_name(file_path)->list:
+    pass

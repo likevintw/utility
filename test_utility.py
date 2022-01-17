@@ -7,7 +7,7 @@ import utility
 
 class TestProcess(unittest.TestCase):
 
-    def test_replace_string(self):
+    def test_replace_string_in_list(self):
         data_list = []
         target = []
         replace = []
@@ -25,11 +25,11 @@ class TestProcess(unittest.TestCase):
         want.append(["Hello Good Morning"])
 
         for i in range(len(data_list)):
-            result = utility.replace_string(
+            result = utility.replace_string_in_list(
                 data_list[i], target[i], replace[i])
             self.assertEqual(want[i], result)
 
-    def test_remove_string(self):
+    def test_remove_string_in_list(self):
         data_list = []
         target = []
         want = []
@@ -44,11 +44,11 @@ class TestProcess(unittest.TestCase):
         want.append(["1.txt", "3.txt", "4.txt", "5.txt"])
 
         for i in range(len(data_list)):
-            result = utility.remove_string(
+            result = utility.remove_string_in_list(
                 data_list[i], target[i])
             self.assertEqual(want[i], result)
 
-    def test_keep_string(self):
+    def test_keep_string_in_list(self):
         data_list = []
         target = []
         want = []
@@ -63,11 +63,11 @@ class TestProcess(unittest.TestCase):
         want.append(["2.txt"])
 
         for i in range(len(data_list)):
-            result = utility.keep_string(
+            result = utility.keep_string_in_list(
                 data_list[i], target[i])
             self.assertEqual(want[i], result)
 
-    def test_import_json(self):
+    def test_import_json_file(self):
         file_path = []
         want = []
 
@@ -76,10 +76,10 @@ class TestProcess(unittest.TestCase):
         want.append({'name': 'john', 'age': '50'})
 
         for i in range(len(file_path)):
-            result = utility.import_json(file_path[i])
+            result = utility.import_json_file(file_path[i])
             self.assertEqual(want[i], result)
 
-    def test_export_json(self):
+    def test_export_json_file(self):
         export_file_name = []
         data = []
         want = []
@@ -90,11 +90,11 @@ class TestProcess(unittest.TestCase):
         want.append({'name': 'Young', 'age': '44'})
 
         for i in range(len(export_file_name)):
-            utility.export_json(export_file_name[i], data[i])
-            result = utility.import_json(export_file_name[i])
+            utility.export_json_file(export_file_name[i], data[i])
+            result = utility.import_json_file(export_file_name[i])
             self.assertEqual(want[i], result)
 
-    def test_save_as_log(self):
+    def test_export_file(self):
         pass
 
     def test_get_symbol_number_in_string(self):
@@ -184,6 +184,7 @@ class TestProcess(unittest.TestCase):
             self.assertEqual(want_file[i], file)
             self.assertEqual(want_direct[i], direct)
 
+    # @unittest.skip("unfinished")
     def test_compare_walk_and_own_routine(self):
         folder_path = []
 
@@ -201,7 +202,9 @@ class TestProcess(unittest.TestCase):
             file, direct = utility.get_file_and_direct_path(folder_path[i], 10)
             wfile, wdirect = utility.get_file_and_direct_path_walk(
                 folder_path[i])
+            print(file, wfile)
             self.assertEqual(len(file), len(wfile))
+            print(direct, wdirect)
             self.assertEqual(len(direct), len(wdirect))
 
 
