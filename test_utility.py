@@ -159,53 +159,9 @@ class TestProcess(unittest.TestCase):
         want_direct.append(['test', 'test/1', 'test/2'])
 
         for i in range(len(folder_path)):
-            file, direct = utility.get_file_and_direct_path(
-                folder_path[i], 10)
+            file, direct = utility.get_file_and_direct_path(folder_path[i])
             self.assertEqual(want_file[i], file)
             self.assertEqual(want_direct[i], direct)
-
-    def test_get_file_and_direct_path_walk(self):
-        folder_path = []
-        want_file = []
-        want_direct = []
-
-        # 1.
-        folder_path.append("test")
-        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
-        want_direct.append(['test', 'test/1', 'test/2'])
-        # 2.
-        folder_path.append("test/")
-        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
-        want_direct.append(['test', 'test/1', 'test/2'])
-
-        for i in range(len(folder_path)):
-            file, direct = utility.get_file_and_direct_path_walk(
-                folder_path[i])
-            self.assertEqual(want_file[i], file)
-            self.assertEqual(want_direct[i], direct)
-
-    # @unittest.skip("unfinished")
-    def test_compare_walk_and_own_routine(self):
-        folder_path = []
-
-        # 1.
-        folder_path.append(
-            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/media")
-        # 2.
-        folder_path.append(
-            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/safecampus")
-        # 3.
-        folder_path.append(
-            r"/mnt/c/Users/LDS/Desktop/workingspace/leedarson_workingspace/image_box")
-
-        for i in range(len(folder_path)):
-            file, direct = utility.get_file_and_direct_path(folder_path[i], 10)
-            wfile, wdirect = utility.get_file_and_direct_path_walk(
-                folder_path[i])
-            print(file, wfile)
-            self.assertEqual(len(file), len(wfile))
-            print(direct, wdirect)
-            self.assertEqual(len(direct), len(wdirect))
 
 
 if __name__ == '__main__':

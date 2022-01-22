@@ -14,7 +14,10 @@
 讀取
 
 * get_symbol_number_in_string
+計算字串中之字元數量
+
 * remove_last_slash
+字串中刪除斜線
+
 * get_file_and_direct_path
-* test_get_file_and_direct_path_walk
-* test_compare_walk_and_own_routine
+得到資料夾中，檔案及資料夾名稱

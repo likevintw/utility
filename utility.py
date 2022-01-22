@@ -37,8 +37,10 @@ def export_json_file(export_file_name, data):
     with open(export_file_name, 'w') as file:
         json.dump(data, file)
 
-def import_file(file_path)->list:
+
+def import_file(file_path) -> list:
     pass
+
 
 def export_file(file_path, data):
     with open(file_path, mode='w') as file:
@@ -82,28 +84,7 @@ def remove_last_slash(string):
     return string
 
 
-def get_file_and_direct_path(folder_path, level_limitation) -> list:
-    folder_path = remove_last_slash(folder_path)
-    initial_slash_number = get_symbol_number_in_string(folder_path, "/")
-    file_list = []
-    direct_list = [folder_path]
-    counter = 0
-    while True:
-        level = get_symbol_number_in_string(
-            direct_list[counter], "/")-initial_slash_number
-        if level > level_limitation:
-            break
-        f, d = run_single_search(direct_list[counter])
-        file_list += f
-        direct_list += d
-        if counter >= len(direct_list)-1:
-            break
-        counter += 1
-
-    return file_list, direct_list
-
-
-def get_file_and_direct_path_walk(folder_path) -> list:
+def get_file_and_direct_path(folder_path) -> list:
     folder_path = remove_last_slash(folder_path)
     file_list = []
     direct_list = []
@@ -116,6 +97,3 @@ def get_file_and_direct_path_walk(folder_path) -> list:
                 file_list.append("{}/{}".format(location, j))
         direct_list.append(location)
     return file_list, direct_list
-
-def export_python_function_name(file_path)->list:
-    pass
