@@ -94,6 +94,15 @@ class TestProcess(unittest.TestCase):
             result = utility.import_json_file(export_file_name[i])
             self.assertEqual(want[i], result)
 
+    def test_import_file(self):
+        file_path = "file.txt"
+        want = ['Hello, World', 'Hello,World']
+
+        result = utility.import_file(file_path)
+
+        for i in range(len(result)):
+            self.assertEqual(want[i], result[i])
+
     def test_export_file(self):
         pass
 

@@ -1,5 +1,6 @@
 
 import json
+from math import e
 import os
 import string
 
@@ -39,27 +40,19 @@ def export_json_file(export_file_name, data):
         json.dump(data, file)
 
 
-def import_file(import_file_name):
-    
-    return_data = []
-
-    if import_file_name == None:
-        return None, "import_file_name is empty:{}".format(import_file_name)
-
+def import_file(file_path):
+    result = []
     try:
-        import_file = open(import_file_name, mode='r')
-    except:
-        return None, "open() error:{}".format(import_file_name)
+        with open(file_path, mode='r') as ImportFile:
+            data = ImportFile.readlines()  # Read whole line
+        for i in data:
+            i = i.strip()  # Remove '\n'
+            result.append(i)
 
-    try:
-        import_data = import_file.readlines()
-    except:
-        return None, "readlines() error:{}".format(import_file_name)
+    except e:
+        return None, "import_file() Error, {}".format(e)
 
-    for data in import_data:
-        return_data.append(data.strip())
-
-    return return_data
+    return result
 
 
 def export_file(file_path, data):
