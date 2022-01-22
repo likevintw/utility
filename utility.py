@@ -1,6 +1,7 @@
 
 import json
 import os
+import string
 
 
 def replace_string_in_list(data_list, target, replaced):
@@ -38,8 +39,27 @@ def export_json_file(export_file_name, data):
         json.dump(data, file)
 
 
-def import_file(file_path) -> list:
-    pass
+def import_file(import_file_name):
+    
+    return_data = []
+
+    if import_file_name == None:
+        return None, "import_file_name is empty:{}".format(import_file_name)
+
+    try:
+        import_file = open(import_file_name, mode='r')
+    except:
+        return None, "open() error:{}".format(import_file_name)
+
+    try:
+        import_data = import_file.readlines()
+    except:
+        return None, "readlines() error:{}".format(import_file_name)
+
+    for data in import_data:
+        return_data.append(data.strip())
+
+    return return_data
 
 
 def export_file(file_path, data):
