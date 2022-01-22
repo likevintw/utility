@@ -150,13 +150,13 @@ class TestProcess(unittest.TestCase):
         want_direct = []
 
         # 1.
-        folder_path.append("test")
-        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
-        want_direct.append(['test', 'test/1', 'test/2'])
+        folder_path.append("folder_test")
+        want_file.append(['folder_test/1/11.txt', 'folder_test/2/22.txt'])
+        want_direct.append(['folder_test', 'folder_test/1', 'folder_test/2'])
         # 2.
-        folder_path.append("test/")
-        want_file.append(['test/1/11.txt', 'test/2/22.txt'])
-        want_direct.append(['test', 'test/1', 'test/2'])
+        folder_path.append("folder_test/")
+        want_file.append(['folder_test/1/11.txt', 'folder_test/2/22.txt'])
+        want_direct.append(['folder_test', 'folder_test/1', 'folder_test/2'])
 
         for i in range(len(folder_path)):
             file, direct = utility.get_file_and_direct_path(folder_path[i])
