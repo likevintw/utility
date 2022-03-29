@@ -1,11 +1,39 @@
 import unittest
-from unittest.case import skip
 import utility
 
 # python3 -m unittest -v <.py>
 
+ROOT = utility.TreeNode(0)
+utility.TreeNode.insert(ROOT, 7)
+utility.TreeNode.insert(ROOT, 4)
+utility.TreeNode.insert(ROOT, 2)
+utility.TreeNode.insert(ROOT, 6)
+utility.TreeNode.insert(ROOT, 5)
+utility.TreeNode.insert(ROOT, 8)
+utility.TreeNode.insert(ROOT, 9)
+utility.TreeNode.insert(ROOT, 16)
+utility.TreeNode.insert(ROOT, 11)
 
 class TestProcess(unittest.TestCase):
+    def test_string_to_json(self):
+        pass
+
+    def test_json_to_string(self):
+        pass
+
+    def test_tree_BFS(self):
+        root = utility.TreeNode(0)
+
+        utility.TreeNode.insert(root, 7)
+        utility.TreeNode.insert(root, 4)
+        utility.TreeNode.insert(root, 2)
+        utility.TreeNode.insert(root, 6)
+        utility.TreeNode.insert(root, 5)
+        utility.TreeNode.insert(root, 8)
+        utility.TreeNode.insert(root, 9)
+        utility.TreeNode.insert(root, 16)
+        utility.TreeNode.insert(root, 11)
+        print(root.traversal_BFS(root))
 
     def test_replace_string_in_list(self):
         data_list = []

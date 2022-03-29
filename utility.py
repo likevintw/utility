@@ -2,7 +2,7 @@
 import json
 from math import e
 import os
-import string
+import time
 
 
 def replace_string_in_list(data_list, target, replaced):
@@ -110,3 +110,111 @@ def get_file_and_direct_path(folder_path) -> list:
                 file_list.append("{}/{}".format(location, j))
         direct_list.append(location)
     return file_list, direct_list
+
+
+def separate_date_and_title(string) -> list:
+    pass
+
+
+def get_time_elapse(function):
+    deltaTime = time.perf_counter()
+    time.sleep(function)
+    deltaTime = time.perf_counter() - deltaTime
+    return show_float_number(deltaTime, 3)
+
+
+def show_float_number(float, show_number):
+    return round(float, show_number)
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    @staticmethod
+    def insert(node, value):
+        if not node:
+            return TreeNode(value)
+        else:
+            if value <= node.val:
+                cur = TreeNode.insert(node.left, value)
+                node.left = cur
+            else:
+                cur = TreeNode.insert(node.right, value)
+                node.right = cur
+            return node
+
+    @staticmethod
+    def show_preorder_traversal(root):
+        '''
+        middle->left->right
+        '''
+        result = []
+
+        def preorder_traversal(root):
+            result.append(root.val)
+            if root.left:
+                preorder_traversal(root.left)
+            if root.right:
+                preorder_traversal(root.right)
+        preorder_traversal(root)
+        return result
+
+    @staticmethod
+    def show_inorder_traversal(root):
+        '''
+        left->middle->right
+        '''
+        result = []
+
+        def inorder_traversal(root):
+            if root.left:
+                inorder_traversal(root.left)
+            result.append(root.val)
+            if root.right:
+                inorder_traversal(root.right)
+        inorder_traversal(root)
+        return result
+
+    @staticmethod
+    def show_postorder_traversal(root):
+        '''
+        left->right->middle
+        '''
+        result = []
+
+        def postorder_traversal(root):
+            if root.left:
+                postorder_traversal(root.left)
+            if root.right:
+                postorder_traversal(root.right)
+            result.append(root.val)
+        postorder_traversal(root)
+        return result
+
+    @staticmethod
+    def traversal_BFS(root):
+        '''
+        Breadth First Search
+        '''
+        result = []
+        queue = [root]
+        while len(queue) > 0:
+            cur = queue.pop(0)
+            result.append(cur.val)
+            if cur.left:
+                queue.append(cur.left)
+            if cur.right:
+                queue.append(cur.right)
+
+        return result
+
+    @staticmethod
+    def traversal_DFS(root):
+        '''
+        Depth First Search
+        '''
+        result = []
+        pass
