@@ -11,6 +11,8 @@ utility.TreeNode.insert(ROOT, 19)
 utility.TreeNode.insert(ROOT, 31)
 utility.TreeNode.insert(ROOT, 42)
 
+ROOT = utility.TreeNode.turn_list_to_tree([27, 14, 35, 10, 19, 31, 42])
+
 
 class TestTree(unittest.TestCase):
     def test_preorder_traversal(self):

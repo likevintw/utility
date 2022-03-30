@@ -134,17 +134,21 @@ class TreeNode:
         self.right = right
 
     @staticmethod
-    def insert(node, value):
-        if not node:
+    def turn_list_to_tree(input_list):
+        root = None
+        for i in input_list:
+            TreeNode.insert(root, i)
+        return root
+
+    @staticmethod
+    def insert(root, value):
+        if not root:
             return TreeNode(value)
+        if value <= root.val:
+            root.left = TreeNode.insert(root.left, value)
         else:
-            if value <= node.val:
-                cur = TreeNode.insert(node.left, value)
-                node.left = cur
-            else:
-                cur = TreeNode.insert(node.right, value)
-                node.right = cur
-            return node
+            root.right = TreeNode.insert(root.right, value)
+        return root
 
     @staticmethod
     def show_preorder_traversal(root):
