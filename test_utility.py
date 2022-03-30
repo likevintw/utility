@@ -1,7 +1,14 @@
 import unittest
 import utility
 
-# python3 -m unittest -v <.py>
+
+'''
+python3 -m unittest -v <.py>
+
+don't show docstring
+unittest.TestCase.shortDescription = lambda x: None 
+'''
+unittest.TestCase.shortDescription = lambda x: None
 
 
 class TestProcess(unittest.TestCase):
@@ -43,42 +50,59 @@ class TestProcess(unittest.TestCase):
             self.assertEqual(result, case.wants)
 
     def test_remove_string_in_list(self):
-        data_list = []
-        target = []
-        want = []
+        class TestFormat:
+            def __init__(self,
+                         data_list,
+                         target,
+                         wants) -> None:
+                self.data_list = data_list
+                self.target = target
+                self.wants = wants
 
-        # 1.
-        data_list.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        target.append("txt")
-        want.append([])
-        # 2.
-        data_list.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        target.append("2")
-        want.append(["1.txt", "3.txt", "4.txt", "5.txt"])
+        cases = []
+        cases.append(TestFormat(
+            data_list=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"],
+            target="txt",
+            wants=[]
+        ))
 
-        for i in range(len(data_list)):
+        cases.append(TestFormat(
+            data_list=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"],
+            target="2",
+            wants=["1.txt", "3.txt", "4.txt", "5.txt"]
+        ))
+
+        for case in cases:
             result = utility.remove_string_in_list(
-                data_list[i], target[i])
-            self.assertEqual(want[i], result)
+                case.data_list, case.target)
+            self.assertEqual(result, case.wants)
 
     def test_keep_string_in_list(self):
-        data_list = []
-        target = []
-        want = []
+        class TestFormat:
+            def __init__(self,
+                         data_list,
+                         target,
+                         wants) -> None:
+                self.data_list = data_list
+                self.target = target
+                self.wants = wants
 
-        # 1.
-        data_list.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        target.append("txt")
-        want.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        # 2.
-        data_list.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        target.append("2")
-        want.append(["2.txt"])
+        cases = []
+        cases.append(TestFormat(
+            data_list=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"],
+            target="txt",
+            wants=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"]
+        ))
+        cases.append(TestFormat(
+            data_list=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"],
+            target="2",
+            wants=["2.txt"]
+        ))
 
-        for i in range(len(data_list)):
+        for case in cases:
             result = utility.keep_string_in_list(
-                data_list[i], target[i])
-            self.assertEqual(want[i], result)
+                case.data_list, case.target)
+            self.assertEqual(result, case.wants)
 
     def test_import_json_file(self):
         file_path = []
