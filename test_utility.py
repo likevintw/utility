@@ -12,10 +12,10 @@ unittest.TestCase.shortDescription = lambda x: None
 
 
 class TestProcess(unittest.TestCase):
-    def test_string_to_json(self):
+    def test_string_to_json(self):  # unfinished
         pass
 
-    def test_json_to_string(self):
+    def test_json_to_string(self):  # unfinished
         pass
 
     def test_replace_string_in_list(self):
@@ -143,7 +143,7 @@ class TestProcess(unittest.TestCase):
     def test_export_file(self):
         pass
 
-    def test_get_symbol_number_in_string(self):
+    def test_get_symbol_number_in_string(self):  # update test format
         string = []
         symbol = []
         want = []
@@ -166,7 +166,7 @@ class TestProcess(unittest.TestCase):
             result = utility.get_symbol_number_in_string(string[i], symbol[i])
             self.assertEqual(want[i], result)
 
-    def test_remove_last_slash(self):
+    def test_remove_last_slash(self):  # update test format
         string = []
         want = []
 
