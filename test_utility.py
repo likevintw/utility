@@ -14,6 +14,7 @@ utility.TreeNode.insert(ROOT, 9)
 utility.TreeNode.insert(ROOT, 16)
 utility.TreeNode.insert(ROOT, 11)
 
+
 class TestProcess(unittest.TestCase):
     def test_string_to_json(self):
         pass
@@ -199,6 +200,13 @@ class TestProcess(unittest.TestCase):
             file, direct = utility.get_file_and_direct_path(folder_path[i])
             self.assertEqual(want_file[i], file)
             self.assertEqual(want_direct[i], direct)
+
+    def test_read_write_file(self):
+        '''
+        write - non append
+        write - append
+        '''
+        pass
 
 
 if __name__ == '__main__':
