@@ -137,7 +137,7 @@ class TreeNode:
     def turn_list_to_tree(input_list):
         root = None
         for i in input_list:
-            TreeNode.insert(root, i)
+            root = TreeNode.insert(root, i)
         return root
 
     @staticmethod
@@ -222,3 +222,17 @@ class TreeNode:
         '''
         result = []
         pass
+
+
+class File(object):
+
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+
+    def __enter__(self):
+        self.open_file = open(self.filename, self.mode)
+        return self.open_file
+
+    def __exit__(self, type, value, traceback):
+        self.open_file.close()
