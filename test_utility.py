@@ -12,26 +12,35 @@ class TestProcess(unittest.TestCase):
         pass
 
     def test_replace_string_in_list(self):
-        data_list = []
-        target = []
-        replace = []
-        want = []
+        class TestFormat:
+            def __init__(self,
+                         data_list,
+                         target,
+                         replace,
+                         wants) -> None:
+                self.data_list = data_list
+                self.target = target
+                self.replace = replace
+                self.wants = wants
 
-        # 1.
-        data_list.append(["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"])
-        target.append("txt")
-        replace.append("jpg")
-        want.append(["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"])
-        # 2.
-        data_list.append(["Hello World"])
-        target.append("World")
-        replace.append("Good Morning")
-        want.append(["Hello Good Morning"])
+        cases = []
+        cases.append(TestFormat(
+            data_list=["1.txt", "2.txt", "3.txt", "4.txt", "5.txt"],
+            target="txt",
+            replace="jpg",
+            wants=["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
+        ))
+        cases.append(TestFormat(
+            data_list=["Hello World"],
+            target="World",
+            replace="Good Morning",
+            wants=["Hello Good Morning"]
+        ))
 
-        for i in range(len(data_list)):
+        for case in cases:
             result = utility.replace_string_in_list(
-                data_list[i], target[i], replace[i])
-            self.assertEqual(want[i], result)
+                case.data_list, case.target, case.replace)
+            self.assertEqual(result, case.wants)
 
     def test_remove_string_in_list(self):
         data_list = []
@@ -177,6 +186,7 @@ class TestProcess(unittest.TestCase):
             self.assertEqual(want_direct[i], direct)
 
     def test_read_write_file(self):
+        # unfinished
         '''
         write - non append
         write - append
