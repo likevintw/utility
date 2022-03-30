@@ -13,6 +13,18 @@ utility.TreeNode.insert(ROOT, 42)
 
 
 class TestTree(unittest.TestCase):
+    def test_preorder_traversal(self):
+        class TestFormat:
+            def __init__(self, args, wants) -> None:
+                self.args = args
+                self.wants = wants
+        cases = []
+        cases.append(TestFormat(ROOT, [27, 14, 10, 19, 35, 31, 42]))
+
+        for case in cases:
+            result = utility.TreeNode.show_preorder_traversal(case.args)
+            self.assertEqual(result, case.wants)
+
     def test_inorder_traversal(self):
         class TestFormat:
             def __init__(self, args, wants) -> None:
@@ -37,18 +49,6 @@ class TestTree(unittest.TestCase):
             result = utility.TreeNode.show_postorder_traversal(case.args)
             self.assertEqual(result, case.wants)
 
-    def test_preorder_traversal(self):
-        class TestFormat:
-            def __init__(self, args, wants) -> None:
-                self.args = args
-                self.wants = wants
-        cases = []
-        cases.append(TestFormat(ROOT, [27, 14, 10, 19, 35, 31, 42]))
-
-        for case in cases:
-            result = utility.TreeNode.show_preorder_traversal(case.args)
-            self.assertEqual(result, case.wants)
-
     def test_traversal_BFS(self):
         class TestFormat:
             def __init__(self, args, wants) -> None:
@@ -59,18 +59,6 @@ class TestTree(unittest.TestCase):
 
         for case in cases:
             result = utility.TreeNode.traversal_BFS(case.args)
-            self.assertEqual(result, case.wants)
-
-    def test_show_tree_queue(self):
-        class TestFormat:
-            def __init__(self, args, wants) -> None:
-                self.args = args
-                self.wants = wants
-        cases = []
-        cases.append(TestFormat(ROOT,  [27, 14, 35, 10, 19, 31, 42]))
-
-        for case in cases:
-            result = utility.TreeNode.show_tree_queue(case.args)
             self.assertEqual(result, case.wants)
 
 
