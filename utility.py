@@ -4,6 +4,7 @@ import os
 import string
 from pypdf import PdfMerger
 
+
 def string_to_number(input):
     try:
         return float(input)
@@ -18,6 +19,7 @@ def separate_by_space(txt):
     except:
         print("error")
         return None
+
 
 def list_files_in_direct(direct_path) -> list:
     if not os.path.isdir(direct_path):
@@ -145,29 +147,28 @@ def get_file_and_direct_path(folder_path) -> list:
     return file_list, direct_list
 
 
-def merge_pdfs(direct_path) -> bool:
-    pdfs = list_files_in_direct(direct_path)
+# def merge_pdfs(direct_path) -> bool:
+#     pdfs = list_files_in_direct(direct_path)
 
-    handler = PdfMerger()
+#     handler = PdfMerger()
 
-    file_sequence=import_file(direct_path+'outline.txt')
-    if not len(file_sequence)==len(pdfs):
-        print("WARMING outline.txt is not the same with content")
-    
-    try:
-        pdfs.sort()
-        pdfs.remove('.DS_Store')
-        pdfs.remove('outline.txt')
-        print(file_sequence)
-        for pdf in file_sequence:
-            print("read {}".format(pdf))
-            handler.append(direct_path+pdf)
+#     file_sequence = import_file(direct_path+'outline.txt')
+#     if not len(file_sequence) == len(pdfs):
+#         print("WARMING outline.txt is not the same with content")
 
-        name = direct_path+"result.pdf"
-        handler.write(name)
-        handler.close()
-        return True
-    
-    except:
-        return False
+#     try:
+#         pdfs.sort()
+#         pdfs.remove('.DS_Store')
+#         pdfs.remove('outline.txt')
+#         print(file_sequence)
+#         for pdf in file_sequence:
+#             print("read {}".format(pdf))
+#             handler.append(direct_path+pdf)
 
+#         name = direct_path+"result.pdf"
+#         handler.write(name)
+#         handler.close()
+#         return True
+
+#     except:
+#         return False
