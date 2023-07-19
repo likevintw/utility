@@ -4,17 +4,20 @@ import os
 import string
 from pypdf import PdfMerger
 
+def remove_files(path, file_type):
+    pass
 
-def get_files_list(direct_path,ext):
+def get_files_list(direct_path, ext):
     files = os.listdir(direct_path)
     # ext = ('.JPG', '.JEPG', '.jpg', '.jpeg')
     pdfs = []
     for file in files:
         if file.endswith(ext):
-            pdfs.append(file)
+            pdfs.append(direct_path+file)
         else:
             continue
     return pdfs
+
 
 def string_to_number(input):
     try:
