@@ -5,6 +5,17 @@ import string
 from pypdf import PdfMerger
 
 
+def get_files_list(direct_path,ext):
+    files = os.listdir(direct_path)
+    # ext = ('.JPG', '.JEPG', '.jpg', '.jpeg')
+    pdfs = []
+    for file in files:
+        if file.endswith(ext):
+            pdfs.append(file)
+        else:
+            continue
+    return pdfs
+
 def string_to_number(input):
     try:
         return float(input)
