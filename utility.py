@@ -4,8 +4,10 @@ import os
 import string
 from pypdf import PdfMerger
 
+
 def remove_files(path, file_type):
     pass
+
 
 def get_files_list(direct_path, ext):
     files = os.listdir(direct_path)
@@ -79,6 +81,14 @@ def import_json_file(file_path):
 def export_json_file(export_file_name, data):
     with open(export_file_name, 'w') as file:
         json.dump(data, file)
+
+
+def dictionary_to_json(dictionary_data):
+    try:
+        return json.dumps(dictionary_data)
+    except Exception as e:
+        print(e)
+        return None
 
 
 def import_file(import_file_name):
