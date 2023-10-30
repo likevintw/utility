@@ -2,10 +2,11 @@
 import json
 import os
 import string
-from pypdf import PdfMerger
+
 
 def remove_files(path, file_type):
     pass
+
 
 def get_files_list(direct_path, ext):
     files = os.listdir(direct_path)
@@ -159,30 +160,3 @@ def get_file_and_direct_path(folder_path) -> list:
                 file_list.append("{}/{}".format(location, j))
         direct_list.append(location)
     return file_list, direct_list
-
-
-# def merge_pdfs(direct_path) -> bool:
-#     pdfs = list_files_in_direct(direct_path)
-
-#     handler = PdfMerger()
-
-#     file_sequence = import_file(direct_path+'outline.txt')
-#     if not len(file_sequence) == len(pdfs):
-#         print("WARMING outline.txt is not the same with content")
-
-#     try:
-#         pdfs.sort()
-#         pdfs.remove('.DS_Store')
-#         pdfs.remove('outline.txt')
-#         print(file_sequence)
-#         for pdf in file_sequence:
-#             print("read {}".format(pdf))
-#             handler.append(direct_path+pdf)
-
-#         name = direct_path+"result.pdf"
-#         handler.write(name)
-#         handler.close()
-#         return True
-
-#     except:
-#         return False
