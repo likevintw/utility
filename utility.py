@@ -20,14 +20,6 @@ def get_files_list(direct_path, ext):
     return pdfs
 
 
-def string_to_number(input):
-    try:
-        return float(input)
-    except:
-        print("Error")
-        return None
-
-
 def separate_by_space(txt):
     try:
         return txt.split()
