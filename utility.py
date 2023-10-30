@@ -4,10 +4,6 @@ import os
 import string
 
 
-def remove_files(path, file_type):
-    pass
-
-
 def get_files_list(direct_path, ext):
     files = os.listdir(direct_path)
     # ext = ('.JPG', '.JEPG', '.jpg', '.jpeg')
@@ -152,3 +148,11 @@ def get_file_and_direct_path(folder_path) -> list:
                 file_list.append("{}/{}".format(location, j))
         direct_list.append(location)
     return file_list, direct_list
+
+
+def convert_json_to_dictionay(text) -> dict:
+    return json.loads(text)
+
+
+def convert_dictionay_to_json(dictionary) -> dict:
+    return json.dumps(dictionary)
