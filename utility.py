@@ -1,7 +1,26 @@
 
 import json
 import os
-import string
+import datetime
+
+
+def get_file_created_time(path):
+    established_time = os.path.getctime(path)
+    timestamp_str = datetime.datetime.fromtimestamp(
+        established_time).strftime('%Y-%m-%d %H:%M')
+    return established_time, timestamp_str
+
+
+def get_file_birth_time(path):
+    established_time = os.stat(path).st_birthtime
+    timestamp_str = datetime.datetime.fromtimestamp(
+        established_time).strftime('%Y-%m-%d %H:%M')
+    return established_time, timestamp_str
+
+
+def get_filename_in_a_folder(path):
+    return os.listdir(path)
+
 
 
 def get_files_list(direct_path, ext):

@@ -1,10 +1,24 @@
 import unittest
 import utility
 
-# python3 -m unittest test_utility.py
+# python3 -m unittest -v test_utility.py
 
 
 class TestMethods(unittest.TestCase):
+
+    def test_get_file_created_time(self):
+        path = "/Users/kevin/Desktop/photo/"
+        filepath = path+"潘多珍珠奶茶客戶.jpeg"
+        print(utility.get_file_created_time(filepath))
+
+    def test_get_file_birth_time(self):
+        path = "/Users/kevin/Desktop/photo/"
+        filepath = path+"潘多珍珠奶茶客戶.jpeg"
+        print(utility.get_file_birth_time(filepath))
+
+    def test_get_filename_in_a_folder(self):
+        path = "/Users/kevin/Desktop/photo/"
+        print(utility.get_filename_in_a_folder(path))
 
     def test_replace_string_in_list(self):
         table = ['1.txt', '2.txt', '3.txt']
