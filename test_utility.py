@@ -5,20 +5,46 @@ import utility
 
 
 class TestMethods(unittest.TestCase):
+    def test_get_all_image_birth_time(self):
+        path = "/Users/kevin/Desktop/photo/"
+        _, dirs, files = utility.get_all_filepaths_in_a_folder(path)
+        for f in files:
+            _, time_str = utility.get_file_birth_time(f)
+            print(f, time_str)
+
+    def test_get_filepaths_in_a_folder(self):
+        path = "/Users/kevin/Desktop/photo/"
+        dirs, files = utility.get_filepaths_in_a_folder(path)
+        # print("dirs: ", dirs)
+        # print("files: ", files)
+
+    def test_get_all_filepaths_in_a_folder(self):
+        path = "/Users/kevin/Desktop/photo/"
+        _, dirs, files = utility.get_all_filepaths_in_a_folder(path)
+        # print("dirs: ", dirs)
+        # print("files: ", files)
+
+    def test_get_all_filenames_in_a_folder(self):
+        path = "/Users/kevin/Desktop/photo/"
+        _, dirs, files = utility.get_all_filenames_in_a_folder(path)
+        # print("dirs: ", dirs)
+        # print("files: ", files)
 
     def test_get_file_created_time(self):
         path = "/Users/kevin/Desktop/photo/"
         filepath = path+"潘多珍珠奶茶客戶.jpeg"
-        print(utility.get_file_created_time(filepath))
+        # print(utility.get_file_created_time(filepath))
 
     def test_get_file_birth_time(self):
         path = "/Users/kevin/Desktop/photo/"
         filepath = path+"潘多珍珠奶茶客戶.jpeg"
-        print(utility.get_file_birth_time(filepath))
+        # print(utility.get_file_birth_time(filepath))
 
-    def test_get_filename_in_a_folder(self):
+    def test_get_filenames_in_a_folder(self):
         path = "/Users/kevin/Desktop/photo/"
-        print(utility.get_filename_in_a_folder(path))
+        dirs, files = utility.get_filenames_in_a_folder(path)
+        # print("dirs: ", dirs)
+        # print("files: ", files)
 
     def test_replace_string_in_list(self):
         table = ['1.txt', '2.txt', '3.txt']

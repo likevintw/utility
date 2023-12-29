@@ -13,26 +13,60 @@ def get_file_created_time(path):
 
 def get_file_birth_time(path):
     established_time = os.stat(path).st_birthtime
+    # timestamp_str = datetime.datetime.fromtimestamp(
+    #     established_time).strftime('%Y-%m-%d %H:%M')
     timestamp_str = datetime.datetime.fromtimestamp(
-        established_time).strftime('%Y-%m-%d %H:%M')
+        established_time).strftime('%Y%m%d')
     return established_time, timestamp_str
 
 
-def get_filename_in_a_folder(path):
-    return os.listdir(path)
-
-
-
-def get_files_list(direct_path, ext):
-    files = os.listdir(direct_path)
-    # ext = ('.JPG', '.JEPG', '.jpg', '.jpeg')
-    pdfs = []
-    for file in files:
-        if file.endswith(ext):
-            pdfs.append(direct_path+file)
+def get_filepaths_in_a_folder(path):
+    dirs = []
+    files = []
+    results = os.listdir(path)
+    for result in results:
+        p = path+result
+        if os.path.isdir(p):
+            dirs.append(p+"/")
         else:
-            continue
-    return pdfs
+            files.append(p)
+    return dirs, files
+
+
+def get_all_filepaths_in_a_folder(folder_path):
+    dirs = [folder_path]
+    files = []
+    while (len(dirs) > 0):
+        path = dirs[0]
+        dirs = dirs[1:]
+        d, f = get_filepaths_in_a_folder(path)
+        files += f
+        dirs += d
+    return folder_path, dirs, files
+
+
+def get_filenames_in_a_folder(path):
+    dirs = []
+    files = []
+    results = os.listdir(path)
+    for result in results:
+        if os.path.isdir(path+result):
+            dirs.append(result)
+        else:
+            files.append(result)
+    return dirs, files
+
+
+def get_all_filenames_in_a_folder(folder_path):
+    dirs = [""]
+    files = []
+    while (len(dirs) > 0):
+        path = dirs[0]
+        dirs = dirs[1:]
+        d, f = get_filenames_in_a_folder(folder_path+path)
+        files += f
+        dirs += d
+    return folder_path, dirs, files
 
 
 def separate_by_space(txt):
