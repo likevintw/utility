@@ -4,6 +4,11 @@ import os
 import datetime
 
 
+def convert_path_to_filename(path):
+    results = path.split("/")
+    return results[-1]
+
+
 def get_file_created_time(path):
     established_time = os.path.getctime(path)
     timestamp_str = datetime.datetime.fromtimestamp(
@@ -160,21 +165,6 @@ def get_symbol_number_in_string(string, symbol):
         if i == "/" or i == "\ ":
             numbers += 1
     return numbers
-
-
-def run_single_search(folder_path):
-    file_path = []
-    direct_path = []
-    try:
-        for file_name in os.listdir(folder_path):
-            if os.path.isdir(folder_path+'/'+file_name):
-                direct_path.append(folder_path+'/'+file_name)
-            else:
-                file_path.append(folder_path+'/'+file_name)
-    except:
-        print("The is no file in the {}".format(folder_path))
-    finally:
-        return file_path, direct_path
 
 
 def remove_last_slash(string):
