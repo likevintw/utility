@@ -10,28 +10,34 @@ class TestMethods(unittest.TestCase):
         path = "/Users/kevin/Downloads/stm32_pet_immune-master.zip"
         result = utility.convert_path_to_filename(path)
         assert (result=="stm32_pet_immune-master.zip")
+    
+    def test_get_file_birth_time(self):
+        path = "./utility.py"
+        float_time, str_time=utility.get_file_birth_time(path)
+        assert(float_time==1703850105.4830298)
+        assert(str_time=='20231229')
 
-    @unittest.skip("not a good case")
-    def test_get_all_image_birth_time(self):
-        path = "/Users/kevin/Desktop/photo/"
-        _, _, files = utility.get_all_filepaths_in_a_folder(path)
-        for f in files:
-            _, time_str = utility.get_file_birth_time(f)
-            print(f, time_str)
+    
+    def testget_file_last_updated_time(self):
+        path = "./.gitignore"
+        float_time, str_time=utility.get_file_last_updated_time(path)
+        print(float_time, str_time)
+        # assert(float_time==1703850548.8102973)
+        # assert(str_time=='2023-12-29 19:49')
 
-    @unittest.skip("not a good case")
+
     def test_get_filepaths_in_a_folder(self):
-        path = "/Users/kevin/Desktop/photo/"
+        path = "../utility"
         dirs, files = utility.get_filepaths_in_a_folder(path)
-        # print("dirs: ", dirs)
-        # print("files: ", files)
+        print(dirs)
+        print(files)
 
-    @unittest.skip("not a good case")
     def test_get_all_filepaths_in_a_folder(self):
-        path = "/Users/kevin/Desktop/photo/"
-        _, dirs, files = utility.get_all_filepaths_in_a_folder(path)
-        # print("dirs: ", dirs)
-        # print("files: ", files)
+        path = "../utility"
+        dir_path, dirs, files = utility.get_all_filepaths_in_a_folder(path)
+        print(dir_path)
+        print(dirs)
+        print(files)
 
     @unittest.skip("not a good case")
     def test_get_all_filenames_in_a_folder(self):
@@ -39,18 +45,6 @@ class TestMethods(unittest.TestCase):
         _, dirs, files = utility.get_all_filenames_in_a_folder(path)
         # print("dirs: ", dirs)
         # print("files: ", files)
-
-    @unittest.skip("not a good case")
-    def test_get_file_created_time(self):
-        path = "/Users/kevin/Desktop/photo/"
-        filepath = path+"潘多珍珠奶茶客戶.jpeg"
-        # print(utility.get_file_created_time(filepath))
-
-    @unittest.skip("not a good case")
-    def test_get_file_birth_time(self):
-        path = "/Users/kevin/Desktop/photo/"
-        filepath = path+"潘多珍珠奶茶客戶.jpeg"
-        # print(utility.get_file_birth_time(filepath))
 
     @unittest.skip("not a good case")
     def test_get_filenames_in_a_folder(self):
